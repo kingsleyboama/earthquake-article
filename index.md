@@ -49,4 +49,4 @@ https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-cred
 ## Analysis Notebooks
 The analysis and data exploration used to generate these visualizations were performed in a Jupyter notebook.  
 Link to notebook:  
-(INSERT YOUR GITHUB LINK TO THE .ipynb FILE HERE)
+](https://github.com/kingsleyboama/earthquake-article/blob/main/Workbook.ipynb)
