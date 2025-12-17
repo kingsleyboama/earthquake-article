@@ -14,6 +14,9 @@
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       }
       #vis {
+        width: 1000px;
+        max-width: 100%;
+        margin: 0 auto;
         padding: 12px;
       }
     </style>
@@ -29,12 +32,20 @@
       const spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "data": { "url": dataUrl, "format": { "type": "csv" } },
-        "width": "container",
-        "height": 540,
+        "width": 900,
+        "height": 450,
         "mark": { "type": "point", "filled": true, "size": 80 },
         "encoding": {
-          "x": { "field": "mag", "type": "quantitative", "title": "Magnitude" },
-          "y": { "field": "depth", "type": "quantitative", "title": "Depth (km)" },
+          "x": {
+            "field": "mag",
+            "type": "quantitative",
+            "title": "Magnitude"
+          },
+          "y": {
+            "field": "depth",
+            "type": "quantitative",
+            "title": "Depth (km)"
+          },
           "tooltip": [
             { "field": "place", "type": "nominal", "title": "Place" },
             { "field": "mag", "type": "quantitative", "title": "Magnitude" },
@@ -44,7 +55,10 @@
         }
       };
 
-      vegaEmbed("#vis", spec, { actions: false });
+      vegaEmbed("#vis", spec, { actions: false }).catch(err => {
+        document.getElementById("vis").innerText = err.toString();
+        console.error(err);
+      });
     </script>
   </body>
 </html>
