@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Significant Earthquakes Interactive</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+      #vis {
+        padding: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="vis"></div>
+
+    <script>
+      const dataUrl =
+        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv";
+
+      const spec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "data": { "url": dataUrl, "format": { "type": "csv" } },
+        "width": "container",
+        "height": 540,
+        "mark": { "type": "point", "filled": true, "size": 80 },
+        "encoding": {
+          "x": { "field": "mag", "type": "quantitative", "title": "Magnitude" },
+          "y": { "field": "depth", "type": "quantitative", "title": "Depth (km)" },
+          "tooltip": [
+            { "field": "place", "type": "nominal", "title": "Place" },
+            { "field": "mag", "type": "quantitative", "title": "Magnitude" },
+            { "field": "depth", "type": "quantitative", "title": "Depth (km)" },
+            { "field": "time", "type": "nominal", "title": "Time" }
+          ]
+        }
+      };
+
+      vegaEmbed("#vis", spec, { actions: false });
+    </script>
+  </body>
+</html>
